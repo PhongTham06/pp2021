@@ -1,3 +1,6 @@
+import curses
+
+
 class Student:
     def __init__(self):
         self.__name = ""
@@ -20,7 +23,7 @@ class Student:
     def set_gpa(self, g):
         self.__gpa = g
 
-    def input(self):
+    def input(self, screen):
         screen.addstr("Enter name: ")
         self.__name = screen.getstr()
         screen.addstr("Enter ID: ")
@@ -35,7 +38,7 @@ class Student:
     def __str__(self):
         return f"Student name: {self.get_name()} Student ID: {self.get_id()} Student DoB: {self.get_dob()} "
 
-    def describe(self):
+    def describe(self, screen):
         screen.addstr(self.__str__())
         screen.refresh()
         curses.napms(2000)

@@ -1,4 +1,8 @@
-def print_students(students):
+import numpy as np
+from Input import *
+
+
+def print_students(students, screen):
     for s in students:
         s.describe()
     screen.refresh()
@@ -7,7 +11,7 @@ def print_students(students):
     screen.refresh()
 
 
-def print_courses(courses):
+def print_courses(courses, screen):
     for c in courses:
         c.describe()
     screen.refresh()
@@ -16,7 +20,7 @@ def print_courses(courses):
     screen.refresh()
 
 
-def marking_student(students, courses):
+def marking_student(students, courses, marks, screen):
     for i in range(len(courses)):
         print(f"{i}, {courses[i].get_name()}")
     screen.addstr("Enter the order number of the chosen course:")
@@ -31,16 +35,16 @@ def marking_student(students, courses):
 
 def check_marked(marks):
     # check that all mark is filled
-    for i in range (len(marks)):
-        for j in range (len(marks[0])):
+    for i in range(len(marks)):
+        for j in range(len(marks[0])):
             if marks[i][j].get_mark == -1:
                 return -1
 
 
-def calculate_gpa(marks, students ,courses):
+def calculate_gpa(marks, students, courses, screen):
     # calculate the gpa for all student
     if (check_marked(marks)) == -1:
-        screen.addstr("There is a student/courses haven't marked",curses.A_BOLD)
+        screen.addstr("There is a student/courses haven't marked", curses.A_BOLD)
         screen.refresh()
         curses.napms(2000)
         screen.clear()
@@ -64,8 +68,7 @@ def sorted_student(students):
     return sorted_gpa
 
 
-def print_sorted_student(students):
+def print_sorted_student(students, screen):
     sorted_gpa = sorted_student(students)
-    for i in range (len(students)):
-        screen.addstr(f"{i+1}, {students[-i].get_name}: {students[-i].get_gpa}")
-
+    for i in range(len(students)):
+        screen.addstr(f"{i+1}, {students[sorted_gpa[-i]].get_name}: {students[sorted_gpa[-i]].get_gpa}")

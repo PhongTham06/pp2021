@@ -1,3 +1,6 @@
+import curses
+
+
 class Course:
     def __init__(self):
         self.__name = ""
@@ -13,7 +16,7 @@ class Course:
     def get_credit(self):
         return self.__credit
 
-    def input(self):
+    def input(self, screen):
         screen.addstr("Enter name: ")
         self.__name = screen.getstr()
         screen.addstr("Enter ID: ")
@@ -28,5 +31,5 @@ class Course:
     def __str__(self):
         return f"Course name: {self.get_name()} Course ID: {self.get_id()} "
 
-    def describe(self):
+    def describe(self, screen):
         screen.addstr(self.__str__())

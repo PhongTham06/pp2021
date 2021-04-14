@@ -1,3 +1,7 @@
+import curses
+import math
+
+
 class Mark:
     def __init__(self, student, course, mark=-1):
         self.__student = student
@@ -13,7 +17,7 @@ class Mark:
     def get_mark(self):
         return self.__mark
 
-    def marking(self):
+    def marking(self, screen):
         screen.addstr(f"Enter mark for student {self.__student.get_name()} "
                       f"in course {self.__course.get_name()}: ")
         raw_mark = int(screen.getstr().decode())
@@ -27,5 +31,5 @@ class Mark:
         return f"Mark for student {self.__student.get_name()} " \
                f"in course {self.__course.get_name()} is {self.__mark}"
 
-    def describe(self):
+    def describe(self, screen):
         screen.addstr(self.__str__())
