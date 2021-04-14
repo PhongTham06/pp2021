@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import curses
 import math
 import numpy as np
@@ -116,8 +115,8 @@ class Mark:
         screen.addstr(self.__str__())
 
 
-def round_down(a):
-    return math.floor(a*10)/10
+def round_down(point):
+    return math.floor(point*10)/10
 
 
 screen = curses.initscr()
@@ -156,16 +155,16 @@ marks = [[Mark(students[i], courses[j]) for i in range(number_student)] for j in
 
 def check_marked(marks):
     # check that all mark is filled
-    for i in range (len(marks)):
-        for j in range (len(marks[0])):
+    for i in range(len(marks)):
+        for j in range(len(marks[0])):
             if marks[i][j].get_mark == -1:
                 return -1
 
 
-def calculate_gpa(marks, students ,courses):
+def calculate_gpa(marks, students, courses):
     # calculate the gpa for all student
     if (check_marked(marks)) == -1:
-        screen.addstr("There is a student/courses haven't marked",curses.A_BOLD)
+        screen.addstr("There is a student/courses haven't marked", curses.A_BOLD)
         screen.refresh()
         curses.napms(2000)
         screen.clear()
@@ -175,7 +174,7 @@ def calculate_gpa(marks, students ,courses):
         total_mark = 0
         total_credit = 0
         for j in range(len(courses)):
-            total_mark += marks[i][j].get_mark
+            total_mark += marks[i][j].get_mark*courses.get_credit
             total_credit += courses.get_credit
         rounded_gpa = round_down((total_mark/total_credit))
         students[i].set_credit(rounded_gpa)
@@ -192,7 +191,7 @@ def sorted_student(students):
 def print_sorted_student(students):
     sorted_gpa = sorted_student(students)
     for i in range (len(students)):
-        screen.addstr(f"{i+1}, {students[-i].get_name}: {students[-i].get_gpa}")
+        screen.addstr(f"{i+1}, {students[sorted_gpa[-i]].get_name}: {students[sorted_gpa[-i]].get_gpa}")
 
 
 while True:
