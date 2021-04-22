@@ -120,11 +120,12 @@ def round_down(point):
 
 
 screen = curses.initscr()
-curses.noecho()
-curses.cbreak()
+# curses.noecho()
+# curses.cbreak()
 curses.start_color()
 
 screen.addstr("Enter the number of student: ")
+screen.refresh()
 number_student = int(screen.getstr().decode())
 students = []
 screen.refresh()
@@ -138,6 +139,7 @@ for i in range(number_student):
     students += [std]
 
 screen.addstr("Enter the number of courses: ")
+screen.refresh()
 number_course = int(screen.getstr().decode())
 courses = []
 screen.refresh()
@@ -202,6 +204,7 @@ while True:
         "Press 4 to list mark."
         "press 5 to print gpa (make sure that you mark all the student in every courses)"
         "Press 0 to exit")
+    screen.refresh()
     a = int(screen.getstr().decode())
     if a == 1:
         for s in students:
@@ -221,6 +224,7 @@ while True:
         for i in range(len(courses)):
             print(f"{i}, {courses[i].get_name()}")
         screen.addstr("Enter the order number of the chosen course:")
+        screen.refresh()
         num = int(screen.getstr().decode())
         for i in range(len(students)):
             marks[i][num].marking()
@@ -232,6 +236,7 @@ while True:
         for i in range(len(courses)):
             print(f"{i}, {courses[i].get_name()}")
         screen.addstr("Enter the order number of the chosen course:")
+        screen.refresh()
         num = int(screen.getstr().decode())
         for i in range(len(students)):
             marks[i][num].describe()
