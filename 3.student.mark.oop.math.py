@@ -176,8 +176,8 @@ def calculate_gpa(marks, students, courses):
         total_mark = 0
         total_credit = 0
         for j in range(len(courses)):
-            total_mark += marks[i][j].get_mark*courses.get_credit
-            total_credit += courses.get_credit
+            total_mark += marks[i][j].get_mark*courses[j].get_credit
+            total_credit += courses[j].get_credit
         rounded_gpa = round_down((total_mark/total_credit))
         students[i].set_credit(rounded_gpa)
 
@@ -198,12 +198,12 @@ def print_sorted_student(students):
 
 while True:
     screen.addstr(
-        "What do you want to do ? Press 1 to print info student. "
-        "Press 2 to print info course. "
-        "Press 3 for marking. "
-        "Press 4 to list mark."
-        "press 5 to print gpa (make sure that you mark all the student in every courses)"
-        "Press 0 to exit")
+        "What do you want to do ? Press 1 to print info student.\n "
+        "Press 2 to print info course.\n "
+        "Press 3 for marking.\n "
+        "Press 4 to list mark.\n"
+        "press 5 to print gpa (make sure that you mark all the student in every courses)\n"
+        "Press 0 to exit\n")
     screen.refresh()
     a = int(screen.getstr().decode())
     if a == 1:
@@ -245,6 +245,7 @@ while True:
         screen.clear()
         screen.refresh()
     elif a == 5:
+        calculate_gpa(marks, students, courses)
         print_sorted_student(students)
     else:
         break
