@@ -54,8 +54,8 @@ def calculate_gpa(marks, students, courses, screen):
         total_mark = 0
         total_credit = 0
         for j in range(len(courses)):
-            total_mark += marks[i][j].get_mark
-            total_credit += courses.get_credit
+            total_mark += marks[i][j].get_mark*courses[j].get_credit
+            total_credit += courses[j].get_credit
         rounded_gpa = math.floor((total_mark/total_credit)*10)/10
         students[i].set_credit(rounded_gpa)
 

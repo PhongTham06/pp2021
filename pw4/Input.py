@@ -5,8 +5,8 @@ from domains.Mark import *
 
 def get_number_student(screen):
     screen.addstr("Enter the number of student: ")
+    screen.refresh()
     number_student = int(screen.getstr().decode())
-
     screen.refresh()
     curses.napms(3000)
     screen.clear()
@@ -26,6 +26,7 @@ def get_info_student(screen):
 
 def get_number_courses(screen):
     screen.addstr("Enter the number of courses: ")
+    screen.refresh()
     number_course = int(screen.getstr().decode())
     screen.refresh()
     curses.napms(3000)
