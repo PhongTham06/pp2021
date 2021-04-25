@@ -45,11 +45,10 @@ while True:
         screen.clear()
         screen.refresh()
     elif a == 5:
-    	zip_file = zipfile.ZipFile("student.dat", "w", zipfile.ZIP_DEFLATED)
-    	zip_file.write("student.txt")
-    	zip_file.write("course.txt")
-    	zip_file.write("mark.txt")
         print_sorted_student(students, screen)
     else:
-
+        zip_file = zipfile.ZipFile("student.dat", "w", zipfile.ZIP_DEFLATED)
+        zip_file.write("student.txt")
+        zip_file.write("course.txt")
+        zip_file.write("mark.txt")
         break
