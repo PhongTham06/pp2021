@@ -179,7 +179,7 @@ def calculate_gpa(marks, students, courses):
             total_mark += marks[i][j].get_mark*courses[j].get_credit
             total_credit += courses[j].get_credit
         rounded_gpa = round_down((total_mark/total_credit))
-        students[i].set_credit(rounded_gpa)
+        students[i].set_gpa(rounded_gpa)
 
 
 def sorted_student(students):
