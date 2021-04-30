@@ -57,7 +57,7 @@ def calculate_gpa(marks, students, courses, screen):
             total_mark += marks[i][j].get_mark*courses[j].get_credit
             total_credit += courses[j].get_credit
         rounded_gpa = math.floor((total_mark/total_credit)*10)/10
-        students[i].set_credit(rounded_gpa)
+        students[i].set_gpa(rounded_gpa)
 
 
 def sorted_student(students):
@@ -72,3 +72,7 @@ def print_sorted_student(students, screen):
     sorted_gpa = sorted_student(students)
     for i in range(len(students)):
         screen.addstr(f"{i+1}, {students[sorted_gpa[-i]].get_name}: {students[sorted_gpa[-i]].get_gpa}")
+    screen.refresh()
+    curses.napms(5000)
+    screen.clear()
+    screen.refresh()

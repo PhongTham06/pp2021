@@ -36,6 +36,6 @@ while True:
         screen.refresh()
     elif a == 5:
     	calculate_gpa(marks, students, curses)
-        print_sorted_student(students, screen)
+    	print_sorted_student(students, screen)
     else:
         break
