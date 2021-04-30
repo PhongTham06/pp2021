@@ -194,7 +194,10 @@ def print_sorted_student(students):
     sorted_gpa = sorted_student(students)
     for i in range (len(students)):
         screen.addstr(f"{i+1}, {students[sorted_gpa[-i]].get_name}: {students[sorted_gpa[-i]].get_gpa}")
-
+    screen.refresh()
+    curses.napms(5000)
+    screen.clear()
+    screen.refresh()
 
 while True:
     screen.addstr(
