@@ -57,12 +57,4 @@ def create_mark(students, courses):
     return marks
 
 
-def marking_student(students, courses, marks, screen):
-    for i in range(len(courses)):
-        print(f"{i}, {courses[i].get_name()}")
-    screen.addstr("Enter the order number of the chosen course:")
-    num = int(screen.getstr().decode())
-    mark_file = open("mark.txt", "a")
-    for i in range(len(students)):
-        marks[i][num].marking()
-        mark_file.write(f"{marks[i][num].__str__}")
+

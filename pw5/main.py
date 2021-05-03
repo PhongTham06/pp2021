@@ -7,6 +7,9 @@ file_name = "student.dat"
 with zipfile.ZipFile(file_name, "r") as zip:
     zip.extractall()
 
+# load data test
+
+
 screen = curses.initscr()
 curses.noecho()
 curses.cbreak()
@@ -45,6 +48,7 @@ while True:
         screen.clear()
         screen.refresh()
     elif a == 5:
+        calculate_gpa(marks, students, courses, screen)
         print_sorted_student(students, screen)
     else:
         zip_file = zipfile.ZipFile("student.dat", "w", zipfile.ZIP_DEFLATED)

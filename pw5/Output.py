@@ -20,6 +20,21 @@ def print_courses(courses, screen):
     screen.refresh()
 
 
+def marking_student(students, courses, marks, screen):
+    for i in range(len(courses)):
+        print(f"{i}, {courses[i].get_name()}")
+    screen.addstr("Enter the order number of the chosen course:")
+    num = int(screen.getstr().decode())
+    mark_file = open("mark.txt", "a")
+    for i in range(len(students)):
+        marks[i][num].marking()
+        mark_file.write(f"{marks[i][num].__str__}")
+    screen.refresh()
+    curses.napms(5000)
+    screen.clear()
+    screen.refresh()
+    
+
 def check_marked(marks):
     # check that all mark is filled
     for i in range(len(marks)):
@@ -41,10 +56,10 @@ def calculate_gpa(marks, students, courses, screen):
         total_mark = 0
         total_credit = 0
         for j in range(len(courses)):
-            total_mark += marks[i][j].get_mark
-            total_credit += courses.get_credit
-        rounded_gpa = math.floor((total_mark/total_credit)*10)/10
-        students[i].set_credit(rounded_gpa)
+            total_mark += marks[i][j].get_mark * courses[j].get_credit
+            total_credit += courses[j].get_credit
+        rounded_gpa = math.floor((total_mark / total_credit) * 10) / 10
+        students[i].set_gpa(rounded_gpa)
 
 
 def sorted_student(students):
@@ -59,3 +74,7 @@ def print_sorted_student(students, screen):
     sorted_gpa = sorted_student(students)
     for i in range(len(students)):
         screen.addstr(f"{i+1}, {students[sorted_gpa[-i]].get_name}: {students[sorted_gpa[-i]].get_gpa}")
+    screen.refresh()
+    curses.napms(5000)
+    screen.clear()
+    screen.refresh()
