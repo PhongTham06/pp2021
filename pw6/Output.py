@@ -20,6 +20,23 @@ def print_courses(courses, screen):
     screen.refresh()
 
 
+def create_mark(students, courses):
+    marks = [[Mark(students[i], courses[j]) for i in range(len(students))] for j in range(len(courses))]
+    return marks
+
+
+def marking_student(students, courses, marks, screen):
+    for i in range(len(courses)):
+        print(f"{i}, {courses[i].get_name()}")
+    screen.addstr("Enter the order number of the chosen course:")
+    screen.refresh()
+    num = int(screen.getstr().decode())
+    mark_file = open("mark.txt", "a")
+    for i in range(len(students)):
+        marks[i][num].marking()
+        mark_file.write(f"{marks[i][num].__str__}")
+
+
 def check_marked(marks):
     # check that all mark is filled
     for i in range(len(marks)):
@@ -59,3 +76,7 @@ def print_sorted_student(students, screen):
     sorted_gpa = sorted_student(students)
     for i in range(len(students)):
         screen.addstr(f"{i+1}, {students[sorted_gpa[-i]].get_name}: {students[sorted_gpa[-i]].get_gpa}")
+    screen.refresh()
+    curses.napms(2000)
+    screen.clear()
+    screen.refresh()

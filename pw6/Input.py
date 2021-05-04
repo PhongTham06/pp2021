@@ -5,8 +5,8 @@ from domains.Mark import *
 
 def get_number_student(screen):
     screen.addstr("Enter the number of student: ")
+    screen.refresh()
     number_student = int(screen.getstr().decode())
-
     screen.refresh()
     curses.napms(3000)
     screen.clear()
@@ -30,6 +30,7 @@ def get_info_student(screen):
 
 def get_number_courses(screen):
     screen.addstr("Enter the number of courses: ")
+    screen.refresh()
     number_course = int(screen.getstr().decode())
     screen.refresh()
     curses.napms(3000)
@@ -52,17 +53,3 @@ def get_info_course(screen):
     return courses
 
 
-def create_mark(students, courses):
-    marks = [[Mark(students[i], courses[j]) for i in range(len(students))] for j in range(len(courses))]
-    return marks
-
-
-def marking_student(students, courses, marks, screen):
-    for i in range(len(courses)):
-        print(f"{i}, {courses[i].get_name()}")
-    screen.addstr("Enter the order number of the chosen course:")
-    num = int(screen.getstr().decode())
-    mark_file = open("mark.txt", "a")
-    for i in range(len(students)):
-        marks[i][num].marking()
-        mark_file.write(f"{marks[i][num].__str__}")
